@@ -6,8 +6,8 @@ const app = express();
 
 app.set('port', (process.env.PORT || 5000));
 
-app.get('/', (request, response) => {
-    //
+app.get('/', (req, res) => {
+    res.send({'memes':true});
 });
 
 app.listen(app.get('port'), () => {
