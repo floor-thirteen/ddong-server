@@ -4,7 +4,7 @@
   "description": "memes",
   "main": "index.js",
   "engines": {
-    "node":"5.4.1"
+    "node": "5.4.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/floor-thirteen/ddong-server#readme",
   "dependencies": {
-    "express": "^4.13.3"
+    "body-parser": "^1.14.2",
+    "express": "^4.13.3",
+    "uuid": "^2.0.1"
   }
 }
