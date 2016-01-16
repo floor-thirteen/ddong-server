@@ -1,0 +1,25 @@
+{
+  "name": "ddong-server",
+  "version": "1.0.0",
+  "description": "memes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/floor-thirteen/ddong-server.git"
+  },
+  "keywords": [
+    "doorbell"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/floor-thirteen/ddong-server/issues"
+  },
+  "homepage": "https://github.com/floor-thirteen/ddong-server#readme",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}
