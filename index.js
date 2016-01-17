@@ -10,9 +10,9 @@ const app = express();
 const users = {};
 
 const Parse = require('parse/node').Parse;
-Parse.initialize("eT8HUCePhitJSxgQSQOjRFko38GIbNUJu9AxNGeE",
-    "NaDZMVWeFm79BBaim8nd0yqtyHJTDww4Ne2Ww6T5",
-    "sYmBU9QT5ziNUeEkbc5I6rdi3BanuBItugGCfJu5");
+Parse.initialize(process.env.Parse_Key_Application,
+    process.env.Parse_Key_Javascript,
+    process.env.Parse_Key_Master);
 
 app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded({extended: true}) );
