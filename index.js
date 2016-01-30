@@ -8,9 +8,9 @@ const uuid = require('uuid');
 const fs = require('fs');
 
 const app = express();
-const users = {};
 const controllers = fs.readdirSync('./controllers');
 
+const dbClient = require('./dbClient.js')();
 const Parse = require('parse/node').Parse;
 Parse.initialize(process.env.Parse_Key_Application,
     process.env.Parse_Key_Javascript,
@@ -23,7 +23,8 @@ app.set('port', (process.env.PORT || 5000));
 
 controllers.forEach((controller) => {
     require(`./controllers/${controller}`)({
-        app
+        app,
+        dbClient,
     });
 });
 
