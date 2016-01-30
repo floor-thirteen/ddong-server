@@ -5,9 +5,11 @@ const express = require('express');
 const http = require('http');
 const bodyParser = require('body-parser');
 const uuid = require('uuid');
+const fs = require('fs');
 
 const app = express();
 const users = {};
+const controllers = fs.readdirSync('./controllers');
 
 const Parse = require('parse/node').Parse;
 Parse.initialize(process.env.Parse_Key_Application,
@@ -19,34 +21,9 @@ app.use( bodyParser.urlencoded({extended: true}) );
 
 app.set('port', (process.env.PORT || 5000));
 
-//placeholder get
-app.get('/', (req, res) => {
-    var ok = (result) => {
-        res.send(result);
-    };
-    Parse.Push.send({
-        where: {
-            deviceType: "android"
-        },
-        data: {
-            "alert": "Sweet dreams are made of memes"
-        }
-    }, {
-        success: function() {
-            // Push was successful
-            ok("Sweet memes are made of dreams");
-        },
-        error: function(error) {
-            // Handle error
-            ok(error);
-        }
-    });
-});
-
-app.post('/', (req, res) => {
-
-    res.send({
-        maymays: 'kek',
+controllers.forEach((controller) => {
+    require(`./controllers/${controller}`)({
+        app
     });
 });
 
