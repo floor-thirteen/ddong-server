@@ -1,7 +1,10 @@
+const path = require('path');
+
 module.exports = (config) => {
-    var app = config.app;
+    const Parse = require(`${config.base}/utils/comms/parse`);
+    const app = config.app;
     
-    app.get('/', (req, res) => {
+    app.get(`/${config.name}`, (req, res) => {
         var ok = (result) => {
             res.send(result);
         };

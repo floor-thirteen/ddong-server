@@ -1,6 +1,5 @@
 module.exports = function(config) {
-    var app = config.app;
-    app.get('/clock', (req, res) => {
+    config.app.get(`/${config.name}`, (req, res) => {
         res.send(new Date());
     });
 };
