@@ -1,17 +1,16 @@
+const path = require('path');
+
 module.exports = (config) => {
-    var app = config.app;
+    const Parse = require(`${config.base}/utils/comms/parse`);
+    const app = config.app;
     
-    app.get('/', (req, res) => {
+    app.get(`/${config.name}`, (req, res) => {
         var ok = (result) => {
             res.send(result);
         };
         Parse.Push.send({
-            where: {
-                deviceType: "android"
-            },
-            data: {
-                "alert": "Sweet dreams are made of memes"
-            }
+            where: {},
+            data: {}
         }, {
             success: function() {
                 // Push was successful

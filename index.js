@@ -6,15 +6,13 @@ const http = require('http');
 const bodyParser = require('body-parser');
 const uuid = require('uuid');
 const fs = require('fs');
+const path = require('path');
 
 const app = express();
 const controllers = fs.readdirSync('./controllers');
 
 const dbClient = require('./dbClient.js')();
-const Parse = require('parse/node').Parse;
-Parse.initialize(process.env.Parse_Key_Application,
-    process.env.Parse_Key_Javascript,
-    process.env.Parse_Key_Master);
+const base = path.dirname(process.mainModule.filename);
 
 app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded({extended: true}) );
@@ -22,9 +20,12 @@ app.use( bodyParser.urlencoded({extended: true}) );
 app.set('port', (process.env.PORT || 5000));
 
 controllers.forEach((controller) => {
+	const name = controller.match(/^(.+)\.js$/)[1];
     require(`./controllers/${controller}`)({
         app,
         dbClient,
+        base,
+        name
     });
 });
 
