@@ -9,12 +9,8 @@ module.exports = (config) => {
             res.send(result);
         };
         Parse.Push.send({
-            where: {
-                deviceType: "android"
-            },
-            data: {
-                "alert": "Sweet dreams are made of memes"
-            }
+            where: {},
+            data: {}
         }, {
             success: function() {
                 // Push was successful
