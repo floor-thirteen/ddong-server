@@ -4,7 +4,7 @@ module.exports = (config) => {
     const Parse = require(`${config.base}/utils/comms/parse`);
     const app = config.app;
     
-    app.get(`/${config.name}`, (req, res) => {
+    app.post(`/${config.name}`, (req, res) => {
         var ok = (result) => {
             res.send(result);
         };
