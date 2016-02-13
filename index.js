@@ -26,10 +26,8 @@ app.get('/', (req, res) => {
     };
     Parse.Push.send({
         where: {
-            deviceType: "android"
         },
         data: {
-            "alert": "Sweet dreams are made of memes"
         }
     }, {
         success: function() {
