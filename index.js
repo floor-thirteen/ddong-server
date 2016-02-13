@@ -20,7 +20,6 @@ app.set('port', (process.env.PORT || 5000));
 
 controllers.forEach((controller) => {
 	const name = controller.match(/^(.+)\.js$/)[1];
-	console.log(name);
     require(`./controllers/${controller}`)({
         app,
         base,
