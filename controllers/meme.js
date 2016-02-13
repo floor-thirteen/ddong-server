@@ -3,7 +3,7 @@ const fs = require('fs'),
 
 module.exports = function(config) {
     var app = config.app;
-    app.get(new RegExp(`/${config.name}/(.+)`), (req, res) => {
+    app.get(new RegExp(`${config.apiHelper.endpointPrefix}/${config.name}/(.+)`), (req, res) => {
         var filePath = path.join(path.dirname(process.mainModule.filename), '/assets/memes', req.params[0]);
         fs.stat(filePath, (err, stats) => {
             if(!err) {
