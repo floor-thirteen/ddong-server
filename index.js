@@ -14,6 +14,11 @@ const controllers = fs.readdirSync('./controllers');
 const dbClient = require('./dbClient.js')();
 const base = path.dirname(process.mainModule.filename);
 
+const appPackage = require('./package');
+const apiHelper = require('./util/apiHelper')({
+    appPackage
+});
+
 app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded({extended: true}) );
 
@@ -25,7 +30,8 @@ controllers.forEach((controller) => {
         app,
         dbClient,
         base,
-        name
+        name,
+        apiHelper
     });
 });
 
