@@ -7,7 +7,7 @@ module.exports = exports = (config) => {
         const senderName = req.body.sender;
         const senderPass = req.body.pass;
 
-        config.dbClient.join(senderName, senderPass)
+        config.db.join(senderName, senderPass)
             .then( (userAdded) => { ok(userAdded); })
             .catch((error    ) => { ok(error);     });
     });
