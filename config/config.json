@@ -1,0 +1,14 @@
+{
+  "development": {
+    "use_env_variable": "PG_DB_Connection_String",
+    "dialectOptions": {
+      "ssl": true
+    }
+  },
+  "production": {
+    "use_env_variable": "PG_DB_Connection_String",
+    "dialectOptions": {
+      "ssl": true
+    }
+  }
+}

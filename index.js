@@ -1,23 +1,25 @@
-/* jshint esnext: true, node:true */
-'use strict';
+const express = require('express');
+const path = require('path');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 
-const express = require('express'),
-    http = require('http'),
-    bodyParser = require('body-parser'),
-    uuid = require('uuid'),
-    app = express(),
-    db = require('./db.js')()
+const app = express();
 
-app.use( bodyParser.json() );
-app.use( bodyParser.urlencoded({extended: true}) );
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.set('port', (process.env.PORT || 5000));
+require('./routes/api')(app);
 
-require('./controllers.js')({
-    app,
-    db
+app.use(function(err, req, res, next) {
+  res.status(err.status || 500);
+  res.send({
+    message: err.message,
+    error: (app.get('env') === 'development') ? err : {}
+  });
 });
 
-app.listen(app.get('port'), () => {
-  console.log(`Node app is running on port ${app.get('port')}`);
-});
+module.exports = app;
